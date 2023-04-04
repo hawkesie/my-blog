@@ -1,15 +1,22 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
-const articleRouter = require('./routes/articles')
+const songRouter = require('./routes/songs')
 const app = express();
-// app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs')
 
-app.use('/articles',articleRouter)
+app.use('/songs',songRouter)
 
 app.get('/', function(req,res){
-    res.render('index');
+    const songs = [{
+        title: 'Roses',
+        artist: 'St Jhn',
+        createdAt: new Date(),
+        lyrics: 'I walk in the corner with the body screaming dolo',
+    },
+
+
+]
+    res.render('songs/index',{ songs: songs });
 })
 
 app.listen(5000);
